@@ -12,7 +12,14 @@ import "swiper/css/navigation";
 
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { useState } from "react";
-
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  useInjectReducer,
+  useInjectSaga,
+} from "../../../../store/core/@reduxjs/redux-injectors";
+import * as FromMoveSlice from "./../../../../store/listMovies/shared/slice";
+import { ListMovieSaga } from "../../../../store/listMovies/shared/saga";
+import { selectMovie } from "../../../../store/listMovies/shared/selectors";
 // Data movies
 const ListMovie = [
   {
@@ -245,34 +252,45 @@ interface ICha {
 // Splice List moview to 2D array
 
 export default function Calendar() {
+  useInjectReducer({
+    key: FromMoveSlice.sliceKey,
+    reducer: FromMoveSlice.reducer,
+  });
+  useInjectSaga({ key: FromMoveSlice.sliceKey, saga: ListMovieSaga });
+  const dispatch = useDispatch();
   const [isShowNow, setisShowNow] = useState(true);
   const [isShowWill, setisShowWill] = useState(false);
   const [arrData, setArrData] = useState<ICha[]>([]);
   const [arr, setArr] = useState<any[]>([]);
 
+  const data = useSelector(selectMovie)
   // Call API
   useEffect(() => {
-    fetch(
-      "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
-    )
-      .then(function (response) {
-        if (response.status !== 200) {
-          console.log("Lỗi, mã lỗi " + response.status);
-          return;
-        }
-        // parse response data
-        response.json().then((data) => {
-          //console.log(data);
-          setArr(data);
-          setArrData(spliceIntoChunks(data, 8));
-          console.log(arr, "arr");
-        });
-      })
-      .catch((err) => {
-        console.log("Error :-S", err);
-      });
+    // fetch(
+    //   "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
+    // )
+    //   .then(function (response) {
+    //     if (response.status !== 200) {
+    //       console.log("Lỗi, mã lỗi " + response.status);
+    //       return;
+    //     }
+    //     // parse response data
+    //     response.json().then((data) => {
+    //       //console.log(data);
+    //       setArr(data);
+    //       setArrData(spliceIntoChunks(data, 8));
+    //       console.log(arr, "arr");
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error :-S", err);
+    //   });
+    dispatch(FromMoveSlice.actions.getListMovie());
     console.count("a");
   }, []);
+  useEffect(() => {
+console.log(data, 'data')
+  }, [data])
   console.log(arrData, "arrData");
   //console.log(arrData, "abc");
   // splice Data
@@ -300,7 +318,7 @@ export default function Calendar() {
     const res = [];
     while (arr.length > 0) {
       const chunk = arr.splice(0, chunkSize);
-      res.push(chunk);
+      //   res.push(chunk);
     }
     return res;
   }
@@ -358,6 +376,7 @@ export default function Calendar() {
                     tenPhim={item.tenPhim}
                     img={item.hinhAnh}
                     time={item.ngayKhoiChieu}
+
                     // review={item.moTa}
                   />
                 ))}
