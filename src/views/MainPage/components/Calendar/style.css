@@ -1,0 +1,51 @@
+.Calendar {
+    height: 100%;
+}
+
+.Calendar__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Calendar__header-now, .Calendar__header-will{
+    margin: 25px 10px;
+    font-size: 1.875rem;
+    cursor: pointer;
+}
+
+.Calendar__header-now:hover, .Calendar__header-will:hover{
+    color: rgb(228, 47, 47);
+}
+
+.Calendar__listMovies {
+    height: auto;
+    width: 100%;
+    background-color: rgb(231, 231, 231);
+    background-color: white ;
+    /* display: flex; */
+}
+
+.Calendar__adds {
+    height: 400px;
+}
+
+
+.mySwiper {
+    width: 1280px;
+
+}
+
+.SwiperSlide {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+.Calendar__adds {
+    border-top: 2px solid rgb(213, 213, 213);
+    margin: 10px 300px;
+    font-size: 1.875rem;
+}

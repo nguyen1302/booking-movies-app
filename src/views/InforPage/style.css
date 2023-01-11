@@ -1,0 +1,35 @@
+.container {
+
+}
+
+.inforMovie {
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/764/590/391/inception-leonardo-dicaprio-movie-posters-2400x3500-entertainment-movies-hd-art-wallpaper-preview.jpg");
+    filter: blur(15px);
+    height: 1000px;
+    width: 1900px;
+}
+
+.item {
+    
+}
+
+.itemImg {
+    
+}
+
+.itemName {
+    
+}
+
+.itemTime {
+    
+}
+
+.itemReview {
+ 
+    
+}

@@ -1,0 +1,30 @@
+.itemMovie{
+    display: flex;
+    flex-direction: column;
+}
+
+.itemImg{
+    height: auto;
+    border-radius: 5px;
+    width: 300px;
+    height: 482px;
+    object-fit: cover;
+}
+
+
+.itemName {
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    word-wrap: break-word;
+    width: 300px;
+    height: 50px;
+}
+
+.itemTime {
+    height: 50px;
+}
+
+.itemReview {
+
+}
