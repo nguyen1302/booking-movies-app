@@ -7,6 +7,7 @@ export interface CreateMovieState {
 
 export const initialState: CreateMovieState = {
   listMovies: {},
+  loading: false
 };
 
 const CreateMovieSlice = createSlice({

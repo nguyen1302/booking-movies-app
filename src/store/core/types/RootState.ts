@@ -1,4 +1,4 @@
-import { CreateMovieState } from "../../listMovies/shared/slice";
+import { CreateMovieState } from '../../listMovies/shared/slice';
 export interface RootState {
   movies: CreateMovieState;
 }

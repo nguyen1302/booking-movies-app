@@ -5,7 +5,7 @@ import { CreateInitApi } from "../constants/initApi";
 export class BookingHttp {
   request: any;
   constructor(endPoint = APP_CONSTANT.API.ENDPOINT) {
-    console.log(process.env.BOOKING_APP_API , 'endPoint')
+    //console.log(process.env.BOOKING_APP_API , 'endPoint')
     this.request = new HttpRequest(endPoint).request;
   }
 
