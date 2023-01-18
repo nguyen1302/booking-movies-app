@@ -264,67 +264,53 @@ export default function Calendar() {
   const [arr, setArr] = useState<any[]>([]);
 
   const data = useSelector(selectMovie)
+  console.log(data, 'asdasd')
+
   // Call API
   useEffect(() => {
-    // fetch(
-    //   "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09"
-    // )
-    //   .then(function (response) {
-    //     if (response.status !== 200) {
-    //       console.log("Lỗi, mã lỗi " + response.status);
-    //       return;
-    //     }
-    //     // parse response data
-    //     response.json().then((data) => {
-    //       //console.log(data);
-    //       setArr(data);
-    //       setArrData(spliceIntoChunks(data, 8));
-    //       console.log(arr, "arr");
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log("Error :-S", err);
-    //   });
     dispatch(FromMoveSlice.actions.getListMovie());
     console.count("a");
   }, []);
+
   useEffect(() => {
-console.log(data, 'data')
+    if(data.length !== 0) {
+    console.log(data, 'setArr')
+    setArr(dataShow(data, 8));
+    } 
   }, [data])
-  console.log(arrData, "arrData");
-  //console.log(arrData, "abc");
-  // splice Data
-  //   function dataShow(arr: any, chunkSize: number) {
-  //     const arrData = [];
-  //     let res = [];
-  //     const resutl = Math.floor(arr.length / chunkSize);
-  //     console.log(resutl);
-  //     for (let i = 0; i <= arr.length; i++) {
-  //       if (res.length === chunkSize || i === arr.length) {
-  //         console.log(i);
-  //         arrData.push(res);
-  //         res = [];
-  //         res.push(arr[i]);
-  //       } else if (arrData.length === resutl) {
-  //         res.push(arr[i]);
-  //       } else {
-  //         res.push(arr[i]);
-  //       }
-  //     }
-  //     return arrData;
-  //   }
+  
+    function dataShow(arr: any, chunkSize: number) {
+      const arrData: any = [];
+      let res: any = [];
+      const resutl = Math.floor(arr.length / chunkSize);
+      console.log(resutl);
+      for (let i = 0; i <= arr.length; i++) {
+        if (res.length === chunkSize || i === arr.length) {
+          console.log(i);
+          arrData.push(res);
+          res = [];
+          res.push(arr[i]);
+        } else if (arrData.length === resutl) {
+          res.push(arr[i]);
+        } else {
+          res.push(arr[i]);
+        }
+      }
+      return arrData;
+   }
+
+    console.log(data, 'data')
 
   function spliceIntoChunks(arr: any, chunkSize: number) {
-    const res = [];
+    const res: any = [];
     while (arr.length > 0) {
       const chunk = arr.splice(0, chunkSize);
-      //   res.push(chunk);
+      res.push(chunk);
     }
     return res;
   }
 
-  //setArr(spliceIntoChunks(arrData, 8));
-  //console.log(arr);
+  console.log(arr, 'abc');
   //let arrWill = spliceIntoChunks(arrData, 8);
   //console.log(arr);
 
@@ -368,7 +354,7 @@ console.log(data, 'data')
           className="mySwiper"
         >
           {isShowNow &&
-            arrData.map((i: any) => (
+            arr.map((i: any) => (
               <SwiperSlide className="SwiperSlide">
                 {i.map((item: IDataMovie) => (
                   <ListMovies
