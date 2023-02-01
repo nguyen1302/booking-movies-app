@@ -1,0 +1,21 @@
+.booking {
+    height: 1000px;
+    width: 1200px;
+    margin: auto;
+}
+
+.booking_screen {
+    height: 150px;
+    font-size: xx-large;
+    border: 2px rgb(78, 78, 78) solid;
+    border-top: 10px rgb(78, 78, 78) solid;
+    margin-bottom: 50px;
+}
+
+.booking_seat {
+    width: 800px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}

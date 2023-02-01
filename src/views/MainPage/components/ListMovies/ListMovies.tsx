@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 
 interface IMove {
+  
   tenPhim: string;
   img: string;
   time: string;

@@ -2,7 +2,7 @@
 
 }
 
-.inforMovie {
+/* .inforMovie {
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
@@ -11,25 +11,27 @@
     filter: blur(15px);
     height: 1000px;
     width: 1900px;
-}
+    z-index: 0;
+} */
 
 .item {
-    
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 300px;
+    align-items: center;
 }
 
 .itemImg {
-    
+    height: auto;
 }
 
-.itemName {
-    
-}
-
-.itemTime {
-    
-}
-
-.itemReview {
- 
-    
+.buyTicket {
+    height: 30px;
+    width: 90px;
+    background-color: rgb(237, 155, 68);
+    margin: 10px;
+    border-radius: 8px;
+    font-size: large;
+    font-weight: 500;
 }

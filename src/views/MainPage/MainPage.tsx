@@ -9,6 +9,7 @@ export default function mainPage() {
     <div>
         <SliderComponent/>
         <Calendar/>
+        <div className="Calendar__adds">Quảng cáo</div>
     </div>
   )
 }

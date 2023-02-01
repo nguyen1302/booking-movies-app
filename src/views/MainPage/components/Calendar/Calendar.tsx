@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "./style.css";
 import ListMovies from "../ListMovies/ListMovies";
+
+
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -20,6 +23,7 @@ import {
 import * as FromMoveSlice from "./../../../../store/listMovies/shared/slice";
 import { ListMovieSaga } from "../../../../store/listMovies/shared/saga";
 import { selectMovie } from "../../../../store/listMovies/shared/selectors";
+import { Link } from "react-router-dom";
 // Data movies
 const ListMovie = [
   {
@@ -262,6 +266,7 @@ export default function Calendar() {
   const [isShowWill, setisShowWill] = useState(false);
   const [arrData, setArrData] = useState<ICha[]>([]);
   const [arr, setArr] = useState<any[]>([]);
+  const [arrWill, setArrWill] = useState<any[]>([]);
 
   const data = useSelector(selectMovie)
   console.log(data, 'asdasd')
@@ -275,7 +280,12 @@ export default function Calendar() {
   useEffect(() => {
     if(data.length !== 0) {
     console.log(data, 'setArr')
+    //setArrData(() => data)
+    //console.log(arrData, 'arrData')
     setArr(dataShow(data, 8));
+    // const reverseArr = arrData.reverse()
+    // console.log(reverseArr, 'reverseArrarrData')
+    // setArrWill(dataShow(reverseArr, 8));  
     } 
   }, [data])
   
@@ -301,14 +311,14 @@ export default function Calendar() {
 
     console.log(data, 'data')
 
-  function spliceIntoChunks(arr: any, chunkSize: number) {
-    const res: any = [];
-    while (arr.length > 0) {
-      const chunk = arr.splice(0, chunkSize);
-      res.push(chunk);
-    }
-    return res;
-  }
+  // function spliceIntoChunks(arr: any, chunkSize: number) {
+  //   const res: any = [];
+  //   while (arr.length > 0) {
+  //     const chunk = arr.splice(0, chunkSize);
+  //     res.push(chunk);
+  //   }
+  //   return res;
+  // }
 
   console.log(arr, 'abc');
   //let arrWill = spliceIntoChunks(arrData, 8);
@@ -330,6 +340,10 @@ export default function Calendar() {
   function showClendarWill() {
     setisShowNow(false);
     setisShowWill(true);
+  }
+
+  function getInfor() {
+
   }
 
   return (
@@ -357,34 +371,31 @@ export default function Calendar() {
             arr.map((i: any) => (
               <SwiperSlide className="SwiperSlide">
                 {i.map((item: IDataMovie) => (
+                  <Link to={'/infor/'+item.maPhim}>
                   <ListMovies
-                    //onClick={onclick}
                     tenPhim={item.tenPhim}
                     img={item.hinhAnh}
                     time={item.ngayKhoiChieu}
-
                     // review={item.moTa}
                   />
+                  </Link>
                 ))}
               </SwiperSlide>
             ))}
-          {/* {isShowWill &&
+          {isShowWill &&
                 arrWill.map((i) => (
                 <SwiperSlide className="SwiperSlide">
                     {i.map((item: any) => (
                     <ListMovies
-                        name={item.Name}
-                        img={item.Img}
-                        time={item.Time}
-                        review={item.Review}
+                    tenPhim={item.tenPhim}
+                    img={item.hinhAnh}
+                    time={item.ngayKhoiChieu}
                     />
                     ))}
                 </SwiperSlide>
-                ))} */}
+                ))}
         </Swiper>
       </div>
-
-      <div className="Calendar__adds">Quảng cáo</div>
     </div>
   );
 }
